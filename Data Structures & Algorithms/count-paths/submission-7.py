@@ -1,0 +1,15 @@
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        
+        mapping = {}
+        def findPaths(i,j):
+            if (i,j) in mapping:
+                return mapping[(i,j)]
+            if i == 0 or j == 0:
+                return 1
+            else:
+                val = findPaths(i,j - 1) + findPaths(i - 1,j )
+                mapping[(i,j)] = val
+                return val
+        
+        return findPaths(m - 1, n - 1)
